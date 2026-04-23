@@ -115,8 +115,21 @@ async function showMainApp() {
     $("main-app").classList.remove("hidden");
     await loadStats();
     await loadPageInfo();
+    await loadCurrentScan();
 }
-
+async function loadCurrentScan() {
+    try {
+        const result = await sendBg({ type: "GET_CURRENT_SCAN" });
+        if (!result) return;
+        if (result.general) {
+            $("scan-result").innerHTML = `<div class="alert alert-info"><span class="alert-icon">🤖</span><span>Auto-scan: ${result.general.humanSummary}</span></div>`;
+            $("scan-result").classList.remove("hidden");
+        }
+        if (result.privacy) {
+            displayPrivacyResult(result.privacy);
+        }
+    } catch (_) {}
+}
 $("setup-save")?.addEventListener("click", async () => {
     const key = $("setup-key").value.trim();
     if (!key.startsWith("AIza") || key.length < 30) {
