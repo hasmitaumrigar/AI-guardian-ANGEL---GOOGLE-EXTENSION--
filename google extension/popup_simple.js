@@ -185,10 +185,12 @@ async function runPrivacy() {
         html += `</div>`;
       }
       if (score < 30) {
-        html += `<button class="btn btn-green" style="margin-top:10px;" onclick="autoAccept()">✅ Auto Accept (Safe Policy)</button>`;
-      }
-      
-      res.innerHTML = html;
+  html += `<button class="btn btn-green" style="margin-top:10px;" id="autoAcceptBtn">✅ Auto Accept (Safe Policy)</button>`;
+}
+res.innerHTML = html;
+if (score < 30) {
+  document.getElementById("autoAcceptBtn")?.addEventListener("click", autoAccept);
+}
     });
   } catch (e) {
     btn.disabled = false; btn.textContent = '🔐 Analyze Privacy & Terms';
@@ -325,6 +327,7 @@ async function getPageText(tab) {
   } catch(e) {
     log('Scripting API failed:', e);
     return '';
+    
   }
 }
 
@@ -332,3 +335,9 @@ function escHtml(s) {
   if (!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
+document.getElementById("scanNowBtn")?.addEventListener("click", scanNow);
+document.getElementById("loadAllBtn")?.addEventListener("click", loadAll);
+document.getElementById("btnPrivacy")?.addEventListener("click", runPrivacy);
+document.getElementById("btnPayment")?.addEventListener("click", runPayment);
+document.getElementById("btnEmail")?.addEventListener("click", runEmail);
+document.getElementById("resetStatsBtn")?.addEventListener("click", resetStats);
