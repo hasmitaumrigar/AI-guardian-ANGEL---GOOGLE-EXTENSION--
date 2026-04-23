@@ -249,15 +249,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           console.log(`[Guardian] ✅ Privacy analysis complete:`, policy);
           if (policy.riskScore > 60) await incrementStat("threatsFound");
           // Return in Gemini response format for consistency with popup parser
-          const response = {
-            candidates: [{
-              content: {
-                parts: [{ text: JSON.stringify(policy, null, 2) }]
-              }
-            }]
-          };
-          console.log(`[Guardian] 📤 Sending response to popup`);
-          return response;
+          return policy;
 
         case "VERIFY_PAYMENT":
           console.log(`[Guardian] 💳 Starting payment verification...`);
@@ -286,7 +278,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           const pageAnalysis = await analyzePrivacyPolicy(msg.text, msg.url, msg.pageTitle || "Unknown Page");
           console.log(`[Guardian] ✅ Page analysis complete:`, pageAnalysis);
           if (pageAnalysis.riskScore > 60) await incrementStat("threatsFound");
-          return { candidates: [{ content: { parts: [{ text: JSON.stringify(pageAnalysis, null, 2) }] } }] };
+          return pageAnalysis;
 
         case "GET_STATS":
           const stats = await getStats();
