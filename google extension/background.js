@@ -4,7 +4,7 @@
 // ============================================================
 
 const VERSION = "2.0.0";
-const API_KEY = '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';
+const API_KEY = '';
 const API_ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
 const MODEL = 'openai/gpt-4o-mini';
 
