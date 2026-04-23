@@ -91,20 +91,20 @@ body { width:420px; min-height:500px; background:#0a0a1a; color:#e0e0e0; font-fa
         <div class="stat"><div class="stat-label">📄 Scanned</div><div class="stat-val" id="sPages">0</div></div>
     </div>
 
-    <button class="btn-sm btn" onclick="scanNow()">🔍 Scan This Page Now</button>
-    <button class="btn-sm btn" onclick="loadAll()">🔄 Refresh</button>
+    <button class="btn-sm btn" id="scanNowBtn">🔍 Scan This Page Now</button>
+    <button class="btn-sm btn" id="loadAllBtn">🔄 Refresh</button>
 </div>
 
 <!-- ===== PRIVACY ===== -->
 <div id="privacy" class="panel">
     <div class="info">Analyze any page's privacy policy, terms, or data practices using AI.</div>
-    <button class="btn" id="btnPrivacy" onclick="runPrivacy()">🔐 Analyze Privacy & Terms</button>
+    <button class="btn" id="btnPrivacy">🔐 Analyze Privacy & Terms</button>
     <div id="privacyResults" class="results"></div>
 </div>
 
 <!-- ===== PAYMENTS ===== -->
 <div id="payments" class="panel">
-    <div class="info">Verify if a checkout or payment page is legit, suspicious, or a scam.</div>
+    <button class="btn" id="btnPayment">💳 Verify Payment Page</button>
     <button class="btn" id="btnPayment" onclick="runPayment()">💳 Verify Payment Page</button>
     <div id="paymentResults" class="results"></div>
 </div>
@@ -113,7 +113,7 @@ body { width:420px; min-height:500px; background:#0a0a1a; color:#e0e0e0; font-fa
 <div id="email" class="panel">
     <div class="info">Paste suspicious email content below to check for phishing/scam patterns.</div>
     <textarea id="emailInput" placeholder="Paste email text here..." style="width:100%;height:120px;background:#12122a;color:#e0e0e0;border:1px solid #1e1e3a;border-radius:8px;padding:10px;font-size:12px;resize:vertical;margin-bottom:8px;font-family:inherit;"></textarea>
-    <button class="btn" id="btnEmail" onclick="runEmail()">📧 Analyze Email</button>
+    <button class="btn" id="btnEmail">📧 Analyze Email</button>
     <div id="emailResults" class="results"></div>
 </div>
 
@@ -129,7 +129,7 @@ body { width:420px; min-height:500px; background:#0a0a1a; color:#e0e0e0; font-fa
         <div class="summary-line">✅ Ad & Tracker Blocking</div>
         <div class="summary-line" style="margin-top:8px; color:#666;">API: OpenRouter (GPT-4o Mini)</div>
     </div>
-    <button class="btn btn-sm" onclick="resetStats()">🔄 Reset All Stats</button>
+    <button class="btn btn-sm" id="resetStatsBtn">🔄 Reset All Stats</button>
 </div>
 
 <script src="popup_simple.js"></script>
